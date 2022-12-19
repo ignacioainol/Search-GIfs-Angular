@@ -45,10 +45,18 @@ export class GifsService {
 
     this.http.get<SearchGifsResponse>(`${this.servicioUrl}/search`, { params })
       .subscribe((resp) => {
-        console.log(resp.data)
         this.resultados = resp.data;
         localStorage.setItem('resultados', JSON.stringify(this.resultados));
         resp.data[0].images
       })
+  }
+
+  deleteItem(item: string) {
+    item = item.trim().toLowerCase();
+
+    const updateInfo = JSON.parse(localStorage.getItem('historial')!).filter((x: string) => x != item);
+    this._historial = updateInfo;
+    localStorage.setItem('historial', JSON.stringify(this._historial));
+
   }
 }

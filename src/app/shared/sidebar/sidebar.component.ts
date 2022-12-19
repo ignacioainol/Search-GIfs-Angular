@@ -18,4 +18,9 @@ export class SidebarComponent {
     this.gifsService.buscarGifs(item)
   }
 
+  deleteItem(item: string) {
+    // console.log(item);
+    this.gifsService.deleteItem(item);
+  }
+
 }
